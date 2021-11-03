@@ -1,7 +1,7 @@
 const fetch = require("./fetch");
 
 (async function checkStock() {
-    const model = "MG8W3LL/A";
+    const model = "MLTP3LL/A";
     const url = `https://www.apple.com/shop/fulfillment-messages?pl=true&mt=compact&cppart=UNLOCKED/US&parts.0=${model}&searchNearby=true&store=R210`;
     const response = await fetch(url);
 
