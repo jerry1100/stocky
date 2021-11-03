@@ -1,25 +1,29 @@
 const https = require("https");
 
-function fetch(url) {
+function fetch(url, data) {
     return new Promise((resolve, reject) => {
-        const timeout = setTimeout(() => reject("Timeout"), 5000);
+        const req = https.request(
+            url,
+            {
+                method: data ? "POST" : "GET",
+                timeout: 3000,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            },
+            (res) => {
+                let body = "";
+                res.on("data", (data) => (body += data));
+                res.on("end", () => resolve(JSON.parse(body)));
+            }
+        );
 
-        https.get(url, (res) => {
-            res.setEncoding("utf8");
+        if (data) {
+            req.write(JSON.stringify(data));
+        }
 
-            let body = "";
-            res.on("data", (data) => (body += data));
-
-            res.on("end", () => {
-                clearTimeout(timeout);
-
-                try {
-                    resolve(JSON.parse(body));
-                } catch (error) {
-                    reject(error);
-                }
-            });
-        });
+        req.on("error", (error) => reject(error));
+        req.end();
     });
 }
 
