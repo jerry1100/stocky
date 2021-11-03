@@ -35,7 +35,8 @@ function fetch(url) {
 
     const availableStores = stores
         .filter((store) => store.available)
-        .map((store) => store.name);
+        .map((store) => store.name)
+        .join(", ");
 
     if (availableStores.length) {
         console.log("iPhone 13 Pro not available at", availableStores);
@@ -44,7 +45,8 @@ function fetch(url) {
 
     const unavailableStores = stores
         .filter((store) => !store.available)
-        .map((store) => store.name);
+        .map((store) => store.name)
+        .join(", ");
 
     console.log("iPhone 13 Pro not available at", unavailableStores);
 })();
