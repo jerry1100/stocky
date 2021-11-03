@@ -2,13 +2,13 @@ version: 2
 
 workflows:
     version: 2
-    test-commit:
+    commit:
         jobs:
             - check
-    test-daily:
+    interval:
         triggers:
             - schedule:
-                  cron: "*/5 * * * *"
+                  cron: "0,5,10,15,20,25,30,35,40,45,50,55 * * * *"
                   filters:
                       branches:
                           only: main
