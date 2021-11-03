@@ -24,7 +24,7 @@ function fetch(url) {
 }
 
 (async function iPhone13Pro() {
-    const model = "MLTP3LL/A";
+    const model = "MG8W3LL/A";
     const url = `https://www.apple.com/shop/fulfillment-messages?pl=true&mt=compact&cppart=UNLOCKED/US&parts.0=${model}&searchNearby=true&store=R210`;
     const response = await fetch(url);
 
@@ -35,18 +35,16 @@ function fetch(url) {
 
     const availableStores = stores
         .filter((store) => store.available)
-        .map((store) => store.name)
-        .join(", ");
+        .map((store) => store.name);
 
     if (availableStores.length) {
-        console.log("iPhone 13 Pro not available at", availableStores);
+        console.log("Available!!!", availableStores);
         process.exit(1);
     }
 
     const unavailableStores = stores
         .filter((store) => !store.available)
-        .map((store) => store.name)
-        .join(", ");
+        .map((store) => store.name);
 
-    console.log("iPhone 13 Pro not available at", unavailableStores);
+    console.log("Unavailable", unavailableStores);
 })();
