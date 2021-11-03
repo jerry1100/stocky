@@ -4,21 +4,28 @@ workflows:
     version: 2
     commit:
         jobs:
-            - check
+            - iphone
+            - xbox
     interval:
         triggers:
             - schedule:
                   cron: "0,5,10,15,20,25,30,35,40,45,50,55 * * * *"
                   filters:
                       branches:
-                          ignore: main
+                          only: main
         jobs:
-            - check
-
+            - iphone
+            - xbox
 jobs:
-    check:
+    iphone:
         docker:
             - image: circleci/node:11-browsers
         steps:
             - checkout
-            - run: node check.js
+            - run: node iphone.js
+    xbox:
+        docker:
+            - image: circleci/node:11-browsers
+        steps:
+            - checkout
+            - run: node xbox.js
