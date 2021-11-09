@@ -29,3 +29,9 @@ jobs:
         steps:
             - checkout
             - run: node xbox.js
+    wallet:
+        docker:
+            - image: circleci/node:11-browsers
+        steps:
+            - checkout
+            - run: node wallet.js
