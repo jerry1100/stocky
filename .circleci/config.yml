@@ -4,7 +4,7 @@ workflows:
     version: 2
     commit:
         jobs:
-            - iphone
+            - wallet
             - xbox
     interval:
         triggers:
@@ -15,6 +15,7 @@ workflows:
                           only: main
         jobs:
             - xbox
+            - wallet
 jobs:
     iphone:
         docker:
