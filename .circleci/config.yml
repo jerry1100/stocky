@@ -5,6 +5,7 @@ workflows:
     commit:
         jobs:
             - xbox
+            - mac
     interval:
         triggers:
             - schedule:
@@ -14,6 +15,7 @@ workflows:
                           only: main
         jobs:
             - xbox
+            - mac
 jobs:
     iphone:
         docker:
@@ -33,3 +35,9 @@ jobs:
         steps:
             - checkout
             - run: node wallet.js
+    mac:
+        docker:
+            - image: circleci/node:11-browsers
+        steps:
+            - checkout
+            - run: node mac.js
